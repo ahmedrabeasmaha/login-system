@@ -3,7 +3,6 @@ var userName = document.querySelector("#name");
 var email = document.querySelector("#email");
 var password = document.querySelector("#password");
 var signUp = document.querySelector("#signUp");
-var login = document.querySelector("#login");
 var emailError = document.querySelector("#emailValidation");
 var passwordError = document.querySelector("#passwordValidation");
 var nameError = document.querySelector("#nameValidation");
@@ -55,28 +54,5 @@ signUp.addEventListener("click", function () {
     });
     localStorage.setItem("users", JSON.stringify(users));
     location.replace(`https://${location.hostname}/login-system/signin.html`);
-  }
-});
-
-login.addEventListener("click", function () {
-  var auth = false;
-  if (
-    emailValidation() &&
-    blankValidation(password, passwordError, "Please enter your password")
-  ) {
-    for (var i = 0; i < users.length; i++) {
-      if (
-        users[i].email == email.value &&
-        users[i].password == password.value
-      ) {
-        auth = true;
-        localStorage.setItem("currentUser", users[i].name);
-        location.replace(`https://${location.hostname}/login-system`);
-      }
-    }
-    if (!auth) {
-      alertLogin.classList.remove("d-none");
-      alertLogin.innerHTML("Please check email and password");
-    }
   }
 });
