@@ -8,7 +8,8 @@ var emailError = document.querySelector("#emailValidation");
 var passwordError = document.querySelector("#passwordValidation");
 var nameError = document.querySelector("#nameValidation");
 var alertLogin = document.querySelector("#alert");
-
+console.log(location);
+console.log(location.hostname);
 if (localStorage.getItem("users")) {
   users = JSON.parse(localStorage.getItem("users"));
 }
