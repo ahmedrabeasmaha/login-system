@@ -50,7 +50,7 @@ login.addEventListener("click", function () {
     }
     if (!auth) {
       alertLogin.classList.remove("d-none");
-      alertLogin.innerHTML("Please check email and password");
+      alertLogin.innerHTML = "Please check email and password";
     }
   }
 });
