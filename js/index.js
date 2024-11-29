@@ -53,7 +53,7 @@ signUp.addEventListener("click", function () {
       password: password.value,
     });
     localStorage.setItem("users", JSON.stringify(users));
-    location.replace(`https://${location.hostname}/signin.html`);
+    location.replace(`https://${location.hostname}/login-system/signin.html`);
   }
 });
 
@@ -70,7 +70,7 @@ login.addEventListener("click", function () {
       ) {
         auth = true;
         localStorage.setItem("currentUser", users[i].name);
-        location.replace(`https://${location.hostname}/`);
+        location.replace(`https://${location.hostname}/login-system`);
       }
     }
     if (!auth) {
