@@ -7,13 +7,10 @@ var emailError = document.querySelector("#emailValidation");
 var passwordError = document.querySelector("#passwordValidation");
 var nameError = document.querySelector("#nameValidation");
 var alertLogin = document.querySelector("#alert");
-console.log(location);
-console.log(location.hostname);
+
 if (localStorage.getItem("users")) {
   users = JSON.parse(localStorage.getItem("users"));
 }
-
-console.log(location);
 
 function emailValidation() {
   var emailRegex = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/;
@@ -30,13 +27,17 @@ function emailValidation() {
       }
     }
   }
+  email.classList.remove("is-invalid");
+
   return true;
 }
 
 function blankValidation(input, validation, msg) {
   if (input.value.trim()) {
+    input.classList.remove("is-invalid");
     return true;
   }
+  input.classList.add("is-invalid");
   validation.innerHTML = msg;
   return false;
 }
