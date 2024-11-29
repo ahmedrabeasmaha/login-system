@@ -1,11 +1,9 @@
 var users = [];
-var userName = document.querySelector("#name");
 var email = document.querySelector("#email");
 var password = document.querySelector("#password");
 var login = document.querySelector("#login");
 var emailError = document.querySelector("#emailValidation");
 var passwordError = document.querySelector("#passwordValidation");
-var nameError = document.querySelector("#nameValidation");
 var alertLogin = document.querySelector("#alert");
 if (localStorage.getItem("users")) {
   users = JSON.parse(localStorage.getItem("users"));
