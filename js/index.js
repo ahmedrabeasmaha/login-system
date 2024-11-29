@@ -1,0 +1,81 @@
+var users = [];
+var userName = document.querySelector("#name");
+var email = document.querySelector("#email");
+var password = document.querySelector("#password");
+var signUp = document.querySelector("#signUp");
+var login = document.querySelector("#login");
+var emailError = document.querySelector("#emailValidation");
+var passwordError = document.querySelector("#passwordValidation");
+var nameError = document.querySelector("#nameValidation");
+var alertLogin = document.querySelector("#alert");
+
+if (localStorage.getItem("users")) {
+  users = JSON.parse(localStorage.getItem("users"));
+}
+
+console.log(location);
+
+function emailValidation() {
+  var emailRegex = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/;
+  if (!emailRegex.test(email.value)) {
+    email.classList.add("is-invalid");
+    emailError.innerHTML = "Please enter valid email";
+    return false;
+  } else if (users) {
+    for (var i = 0; i < users.length; i++) {
+      if (email.value == users[i].email) {
+        email.classList.add("is-invalid");
+        emailError.innerHTML = "Email is used before";
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function blankValidation(input, validation, msg) {
+  if (input.value.trim()) {
+    return true;
+  }
+  validation.innerHTML = msg;
+  return false;
+}
+
+signUp.addEventListener("click", function () {
+  if (
+    emailValidation() &&
+    blankValidation(userName, nameError, "Please enter your name") &&
+    blankValidation(password, passwordError, "Please enter your password")
+  ) {
+    users.push({
+      email: email.value,
+      name: userName.value,
+      password: password.value,
+    });
+    localStorage.setItem("users", JSON.stringify(users));
+    location.replace(`https://${location.hostname}/signin.html`);
+  }
+});
+
+login.addEventListener("click", function () {
+  var auth = false;
+  if (
+    emailValidation() &&
+    blankValidation(password, passwordError, "Please enter your password")
+  ) {
+    for (var i = 0; i < users.length; i++) {
+      if (
+        users[i].email == email.value &&
+        users[i].password == password.value
+      ) {
+        auth = true;
+        localStorage.setItem("currentUser", users[i].name);
+        location.replace(`https://${location.hostname}/`);
+      }
+    }
+    if (!auth) {
+      alertLogin.classList.remove("d-none");
+      alertLogin.innerHTML("Please check email and password");
+    }
+  }
+});
