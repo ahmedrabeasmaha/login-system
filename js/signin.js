@@ -8,7 +8,7 @@ var passwordError = document.querySelector("#passwordValidation");
 var nameError = document.querySelector("#nameValidation");
 var alertLogin = document.querySelector("#alert");
 console.log(location);
-console.log(location.hostname);
+console.log(`https://${location.hostname}/login-system/signin.html`);
 if (localStorage.getItem("users")) {
   users = JSON.parse(localStorage.getItem("users"));
 }
