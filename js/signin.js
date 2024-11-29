@@ -17,14 +17,6 @@ function emailValidation() {
     email.classList.add("is-invalid");
     emailError.innerHTML = "Please enter valid email";
     return false;
-  } else if (users) {
-    for (var i = 0; i < users.length; i++) {
-      if (email.value == users[i].email) {
-        email.classList.add("is-invalid");
-        emailError.innerHTML = "Email is used before";
-        return false;
-      }
-    }
   }
   email.classList.remove("is-invalid");
   return true;
